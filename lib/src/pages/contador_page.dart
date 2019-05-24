@@ -31,15 +31,47 @@ class _ContadorPageSate extends State<ContadorPage> {
             ],
           )
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            _count++;
-          });
-        },
-      ),
+      floatingActionButton: _crearBotones()
+    );
+  }
+  Widget _crearBotones () {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        SizedBox(
+          width: 30,
+        ),
+        FloatingActionButton(
+          child: Icon(Icons.exposure_zero),
+          onPressed: _reset,
+        ),
+        Expanded(
+          child: SizedBox(),
+        ),
+        FloatingActionButton(
+          child: Icon(Icons.remove),
+          onPressed: _substraer,
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: _increment,
+        ),
+      ],
     );
   }
 
+  void _increment() {
+    setState(() => this._count++);
+  }
+
+  void _substraer() {
+    setState(() => _count-- );
+  }
+
+  void _reset() {
+    setState(() => _count = 0);
+  }
 }
